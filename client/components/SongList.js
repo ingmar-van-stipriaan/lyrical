@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { graphql } from '@apollo/client/react/hoc';
-import { Link, hashHistory } from 'react-router';
+import { Link } from 'react-router';
 import query from '../queries/fetchSongs';
 import deleteMutation from '../queries/deleteSong';
+import { hashHistory } from 'react-router';
 
 class SongList extends Component {
     onSongDelete(id) {
@@ -18,7 +19,7 @@ class SongList extends Component {
         return this.props.data.songs.map(({ title, id }) => {
             return (
                 <li key={id} className='collection-item' onClick={() => { hashHistory.push(`/songs/${id}`) }}>
-                    <Link to={`/songs/${id}`}>{title}</Link>
+                    {title}
                     <i className="material-icons" onClick={() => this.onSongDelete(id)}>delete</i>
                 </li>
             )
